@@ -1,0 +1,51 @@
+{
+  "id": "1662645",
+  "name": "my-pro",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "2019069",
+      "name": "薪资",
+      "font_class": "xinzi",
+      "unicode": "e7ae",
+      "unicode_decimal": 59310
+    },
+    {
+      "icon_id": "5582337",
+      "name": "用户",
+      "font_class": "yonghu",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "5881141",
+      "name": "部门",
+      "font_class": "bumen",
+      "unicode": "e62b",
+      "unicode_decimal": 58923
+    },
+    {
+      "icon_id": "10052483",
+      "name": "奖惩管理",
+      "font_class": "jiangchengguanli",
+      "unicode": "e60d",
+      "unicode_decimal": 58893
+    },
+    {
+      "icon_id": "10149988",
+      "name": "考勤",
+      "font_class": "kaoqin",
+      "unicode": "e614",
+      "unicode_decimal": 58900
+    },
+    {
+      "icon_id": "12842809",
+      "name": "w_职员",
+      "font_class": "w_zhiyuan",
+      "unicode": "e67e",
+      "unicode_decimal": 59006
+    }
+  ]
+}
