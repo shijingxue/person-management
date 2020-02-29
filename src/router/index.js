@@ -2,8 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
+import Hello from '../components/Hello.vue'
 import Division from '../components/department/Division.vue'
 import Position from '../components/department/Position.vue'
+import Clerk from '../components/clerk/Clerk.vue'
+import Rewards from '../components/reward/Rewards.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -21,7 +24,11 @@ const router = new VueRouter({
       children: [
         {
           path: '/',
-          redirect: '/branchmessage'
+          redirect: '/hello'
+        },
+        {
+          path: '/hello',
+          component: Hello
         },
         {
           path: '/branchmessage',
@@ -30,6 +37,14 @@ const router = new VueRouter({
         {
           path: '/branchposition',
           component: Position
+        },
+        {
+          path: '/staff',
+          component: Clerk
+        },
+        {
+          path: '/randp',
+          component: Rewards
         }
       ]
     }
