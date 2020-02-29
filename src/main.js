@@ -4,6 +4,13 @@ import router from './router'
 import axios from 'axios'
 import store from './store'
 import Mix from './components/minix/Mix'
+
+// 导入nprogress进度栏插件
+import Nprogress from 'nprogress'
+
+// 导入事件总线
+import VueBus from 'vue-bus'
+
 // 时间格式化插件
 // import moment from 'moment/moment'
 // import ElementUI from 'element-ui'
@@ -16,7 +23,7 @@ import './assets/fonts/iconfont.css'
 import './assets/css/common.css'
 
 Vue.component('Mix', Mix)
-
+Vue.use(VueBus)
 Vue.use(ElementUI)
 // Vue.use(moment)
 Vue.config.productionTip = false
@@ -26,10 +33,18 @@ axios.defaults.baseURL = `http://www.ljsss.cn:8085/`
 Vue.prototype.$http = axios
 // 请求在到达服务器之前，先会调用use中的这个回调函数来添加请求头信息
 axios.interceptors.request.use(config => {
+  Nprogress.start()
   // 为请求头对象，添加token验证的Authorization字段
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+
+// 响应拦截器
+axios.interceptors.response.use(config => {
+  Nprogress.done()
+  return config
+})
+
 Vue.prototype.$message = Message
 
 // 格式化时间过滤器

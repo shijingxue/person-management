@@ -29,8 +29,8 @@
             <!-- <el-submenu index="1"> -->
               <!-- 一级菜单模板区域 -->
               <template slot="title">
-                <i class="el-icon-help"></i>
-                <!-- <i :class="iconList[item.id]"></i> -->
+                <!-- <i class="el-icon-help"></i> -->
+                <i class="icon_list" :class="iconList[item.id]"></i>
                 <span>{{item.authname}}</span>
               </template>
               <!-- 二级菜单 -->
@@ -149,5 +149,6 @@ export default {
 }
 .iconfont {
   margin-right: 15px;
+  font-size: 20px;
 }
 </style>

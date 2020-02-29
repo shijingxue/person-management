@@ -14,12 +14,12 @@
         class="demo-ruleForm user_form"
       >
         <el-form-item prop="userName">
-          <el-input v-model="loginlist.userName" prefix-icon="iconfont icon-user"></el-input>
+          <el-input v-model="loginlist.userName" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <el-form-item prop="userPassword">
           <el-input
             v-model="loginlist.userPassword"
-            prefix-icon="iconfont icon-3702mima"
+            prefix-icon="el-icon-lock"
             type="password"
           ></el-input>
         </el-form-item>
@@ -59,13 +59,13 @@ export default {
           return
         }
         const { data: res } = await this.$http.post('login', this.loginlist)
-        console.log('返回的数据', res)
+        // console.log('返回的数据', res)
         // console.log('返回的数据', res.code)
         if (res.code !== '200') {
           return this.$message.error('登录失败')
         }
         this.$message.success('登录成功')
-        console.log(111)
+        // console.log(111)
         //  保存token
         window.sessionStorage.setItem('token', res.data.token)
         //  导航值home
