@@ -5,7 +5,7 @@ import Home from '../components/Home.vue'
 import Hello from '../components/Hello.vue'
 import Division from '../components/department/Division.vue'
 import Position from '../components/department/Position.vue'
-import Clerk from '../components/clerk/Clerk.vue'
+import Employee from '../components/employee/Employee.vue'
 import Rewards from '../components/reward/Rewards.vue'
 
 Vue.use(VueRouter)
@@ -40,7 +40,7 @@ const router = new VueRouter({
         },
         {
           path: '/staff',
-          component: Clerk
+          component: Employee
         },
         {
           path: '/randp',
