@@ -111,7 +111,7 @@ export default {
       if (res.code !== '200') {
           return this.$message.error('获取用户信息失败')
       }
-      this.$message.success('获取用户信息成功')
+      // this.$message.success('获取用户信息成功')
       this.usersList = res.data
     },
     // 新增用户按钮
