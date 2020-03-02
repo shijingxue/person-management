@@ -60,18 +60,15 @@
         label="员工所属部门"
         prop="bName">
       </el-table-column >
-      <!-- <template slot-scope="scope"> -->
       <el-table-column
         label="员工状态"
         prop="yState">
-        <!-- {{scope.row.yState === 1 ? '正式员工': '实习'}} -->
         <template slot-scope="scope">
           <div v-if='scope.row.yState===1'>正式员工</div>
           <div v-else-if='scope.row.yState===2'>实习</div>
           <div v-else-if='scope.row.yState===0'>离职</div>
         </template>
       </el-table-column >
-      <!-- </template> -->
       <el-table-column label="操作">
         <template slot-scope="scope">
         <!-- 修改 员工职位 部门 月薪 状态 -->
