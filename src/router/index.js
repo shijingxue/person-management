@@ -7,6 +7,10 @@ import Division from '../components/department/Division.vue'
 import Position from '../components/department/Position.vue'
 import Employee from '../components/employee/Employee.vue'
 import Rewards from '../components/reward/Rewards.vue'
+import Users from '../components/user/Users.vue'
+import Check from '../components/check/Check.vue'
+import Pay from '../components/pay/Pay.vue'
+import PayChange from '../components/pay/Pay_change.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -45,6 +49,22 @@ const router = new VueRouter({
         {
           path: '/randp',
           component: Rewards
+        },
+        {
+          path: '/userinformation',
+          component: Users
+        },
+        {
+          path: '/salaryentry',
+          component: Pay
+        },
+        {
+          path: '/salarychanges',
+          component: PayChange
+        },
+        {
+          path: '/attendance',
+          component: Check
         }
       ]
     }

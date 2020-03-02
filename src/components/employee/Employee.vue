@@ -441,9 +441,6 @@ export default {
     margin-bottom: 0;
     width: 50%;
   }
-.el-pagination {
-  margin-top: 20px;
-}
 .el-input {
   width: 70%;
 }
