@@ -114,10 +114,6 @@ export default {
       // this.$message.success('获取用户信息成功')
       this.usersList = res.data
     },
-    // 新增用户按钮
-    // addUsers() {
-
-    // }
     // 重置表单
      resetForm() {
         this.$refs.addUsersListRef.resetFields()

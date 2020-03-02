@@ -100,7 +100,7 @@ export default {
       if (res.code !== '200') {
         return this.$message.error('获取部门信息失败')
       }
-      this.$message.success('获取部门信息成功')
+      // this.$message.success('获取部门信息成功')
       this.branchList = res.data.records
       this.total = res.data.total
       // console.log(this.total)

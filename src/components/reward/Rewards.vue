@@ -176,7 +176,7 @@ export default {
       if (res.code !== '200') {
           return this.$message.error('获取奖惩信息失败')
       }
-      this.$message.success('获取奖惩信息成功')
+      // this.$message.success('获取奖惩信息成功')
       this.rewardsList = res.data.records
       this.total = res.data.total
     },

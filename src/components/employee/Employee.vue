@@ -106,17 +106,11 @@
       <!-- 表单 -->
       <el-form :model="addEmployeeList" :rules="addEmployeeRules" ref="addEmployeeRef" label-width="120px" class="demo-ruleForm">
          <el-form-item label="员工所属部门" prop="bName" >
-           <!-- @change="getTheId(addEmployeeList.bName)" -->
             <el-select v-model="addEmployeeList.bName" placeholder="请选择部门" >
               <div v-for='item in branchList' :key='item.bId'>
                <el-option :label="item.bName" :value="item.bName" ></el-option>
               </div>
             </el-select>
-            <!-- <el-cascader
-              v-model="bumen"
-              :options="positionList[i]"
-              :props="{ expandTrigger: 'hover' }"
-              @change="handleChange"></el-cascader> -->
           </el-form-item>
         <el-form-item label="员工职位" prop="bzName">
           <el-select v-model="addEmployeeList.bzName" placeholder="请选择员工职位">
@@ -192,10 +186,6 @@
         </el-form-item>
         <el-form-item label="员工性别" prop="ySex" >
           <el-select v-model="editList.ySex" disabled placeholder="请选择员工性别">
-          <!-- <template slot-scope="scope">
-            <div v-if="scope.ySex==='2'">女</div>
-           <div v-if="scope.ySex=== '1'">男</div>
-          </template> -->
           <el-option label="女" value="2"></el-option>
           <el-option label="男" value="1"></el-option>
         </el-select>
@@ -290,7 +280,7 @@ export default {
         ]
       },
       // 修改行信息
-      editList: [],
+      editList: {},
       // 修改员工信息对话框显示和隐藏
       editDialogVisible: false,
       // 修改规则
@@ -315,7 +305,6 @@ export default {
   created () {
     this.getClerk()
     this.getBranch()
-    // this.getPosition()
   },
   methods: {
     // 获取员工信息
@@ -325,7 +314,7 @@ export default {
       if (res.code !== '200') {
         return this.$message.error('获取员工信息失败')
       }
-      this.$message.success('获取员工信息成功')
+      // this.$message.success('获取员工信息成功')
       this.clerkList = res.data.records
       this.total = res.data.total
     },
@@ -365,7 +354,7 @@ export default {
           return 
         }
         const { data: res } = await this.$http.post('employee/add', this.addEmployeeList)
-        console.log(res)
+        // console.log(res)
         if (res.code !== '200') {
           return this.$message.error('新增员工失败')
         }
@@ -382,7 +371,7 @@ export default {
     },
     // 修改员工信息对话框关闭
     closeEditBox() {
-      this.editList = []
+      this.editList = {}
     },
     // 确定修改按钮
     editBtn() {

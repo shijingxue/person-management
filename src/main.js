@@ -12,7 +12,7 @@ import Nprogress from 'nprogress'
 import VueBus from 'vue-bus'
 
 // 时间格式化插件
-import moment from 'moment/moment'
+// import moment from 'moment/moment'
 // import ElementUI from 'element-ui'
 import ElementUI, {
   Message
@@ -48,9 +48,21 @@ axios.interceptors.response.use(config => {
 Vue.prototype.$message = Message
 
 // 格式化时间过滤器
-Vue.filter('moment', function(timeString) {
-  timeString = timeString || 'YYYY-MM-DD, hh:mm:ss a'
-  return moment().format(timeString)
+// Vue.filter('moment', function(timeString) {
+//   timeString = timeString || 'YYYY-MM-DD, hh:mm:ss a'
+//   return moment().format(timeString)
+// })
+Vue.filter('moment', function (originVal) {
+  const dt = new Date(originVal)
+
+  const y = dt.getFullYear()
+  const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+  const d = (dt.getDate() + '').padStart(2, '0')
+  const hh = (dt.getHours() + '').padStart(2, '0')
+  const mm = (dt.getMinutes() + '').padStart(2, '0')
+  const ss = (dt.getSeconds() + '').padStart(2, '0')
+
+  return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
 })
 
 new Vue({

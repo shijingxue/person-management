@@ -49,14 +49,14 @@
       </el-table>
       <!-- 分页 -->
       <el-pagination
-      @size-change="handleSizeChange"
-      @current-change="handleCurrentChange"
-      :current-page="queryInfo.current"
-      :page-sizes="[5,8,10]"
-      :page-size="queryInfo.size"
-      layout="total, sizes, prev, pager, next, jumper"
-      :total="total">
-    </el-pagination>
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.current"
+        :page-sizes="[5,8,10]"
+        :page-size="queryInfo.size"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+     </el-pagination>
     </el-card>
   </div>
 </template>
@@ -79,7 +79,7 @@ export default {
   methods: {
     async getPayList() {
       const { data: res } = await this.$http.get('ePrice/selectPage', { params: this.queryInfo })
-      console.log(res)
+      // console.log(res)
       if (res.code !== '200') {
           return this.$message.error('获取员工薪资失败')
       }
