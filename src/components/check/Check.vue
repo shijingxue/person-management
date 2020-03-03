@@ -50,7 +50,7 @@ export default {
   methods: {
   async getEmpCheckList() {
       const { data: res } = await this.$http.get('timeTag/selectPage', { params: this.queryInfo })
-      console.log(res)
+      // console.log(res)
       if (res.code !== '200') {
           return this.$message.error('获取员工薪资变动失败')
       }

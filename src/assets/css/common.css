@@ -17,3 +17,13 @@ body,
 .el-input.is-disabled .el-input__inner {
   color: #000 !important;
 }
+.el-input__inner {
+  height: 45px;
+}
+.el-input-group__append{
+  padding: 0px;
+}
+#s-canvas {
+  height: 100%;
+  vertical-align: middle;
+}
