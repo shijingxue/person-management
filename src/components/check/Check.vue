@@ -2,6 +2,8 @@
   <div>
     <Mix nav1='考勤管理' nav2='考勤信息管理'></Mix>
     <el-card>
+       <!-- 新增员工 -->
+      <el-button class="addCheck" icon="el-icon-plus" type="primary">新增考勤</el-button>
       <el-table :data="empCheckList" style="width: 100%" border stripe>
       <el-table-column  prop="id"  label="考勤记录id"  width="180"></el-table-column>
       <el-table-column  prop="yBranch"  label="员工部门"  width="180"></el-table-column>
@@ -71,4 +73,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.addCheck {
+  margin-bottom: 20px;
+}
 </style>

@@ -159,7 +159,7 @@ export default {
         return this.$message.info('您已经取消删除')
       }
         const { data: res } = await this.$http.post('user/delete', row)
-        console.log(res)
+        // console.log(res)
          if (res.code !== '200') {
           return this.$message.error('用户删除失败')
         }

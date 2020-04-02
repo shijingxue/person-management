@@ -1,16 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../components/Login.vue'
-import Home from '../components/Home.vue'
-import Hello from '../components/Hello.vue'
-import Division from '../components/department/Division.vue'
-import Position from '../components/department/Position.vue'
-import Employee from '../components/employee/Employee.vue'
-import EmployeeChange from '../components/employee/Employee_change.vue'
-import Rewards from '../components/reward/Rewards.vue'
-import Users from '../components/user/Users.vue'
-import Check from '../components/check/Check.vue'
-import Pay from '../components/pay/Pay.vue'
+const Login = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Login.vue')
+const Home = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Home.vue')
+const Hello = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Hello.vue')
+const Division = () => import(/* webpackChunkName:"department" */ '../components/department/Division.vue')
+const Position = () => import(/* webpackChunkName:"department" */ '../components/department/Position.vue')
+const Employee = () => import(/* webpackChunkName:"employee" */ '../components/employee/Employee.vue')
+const EmployeeChange = () => import(/* webpackChunkName:"employee" */ '../components/employee/Employee_change.vue')
+const Rewards = () => import(/* webpackChunkName:"reward" */ '../components/reward/Rewards.vue')
+const Users = () => import(/* webpackChunkName:"user" */ '../components/user/Users.vue')
+const Check = () => import(/* webpackChunkName:"check" */ '../components/check/Check.vue')
+const Pay = () => import(/* webpackChunkName:"pay" */ '../components/pay/Pay.vue')
+
+// import Login from '../components/Login.vue'
+// import Home from '../components/Home.vue'
+// import Hello from '../components/Hello.vue'
+// import Division from '../components/department/Division.vue'
+// import Position from '../components/department/Position.vue'
+// import Employee from '../components/employee/Employee.vue'
+// import EmployeeChange from '../components/employee/Employee_change.vue'
+// import Rewards from '../components/reward/Rewards.vue'
+// import Users from '../components/user/Users.vue'
+// import Check from '../components/check/Check.vue'
+// import Pay from '../components/pay/Pay.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({

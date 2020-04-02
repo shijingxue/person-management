@@ -106,7 +106,7 @@ export default {
         // console.log('返回的数据', res)
         // console.log('返回的数据', res.code)
         if (res.code !== '200') {
-          return this.$message.error('登录失败')
+          return this.$message.error('登录失败,请输入正确的用户名和密码')
         }
         this.$message.success('登录成功')
         // console.log(111)

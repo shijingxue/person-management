@@ -15,7 +15,7 @@ import ElementUI, {
   Message
 } from 'element-ui'
 // 样式文件一定要引入
-import 'element-ui/lib/theme-chalk/index.css'
+// import 'element-ui/lib/theme-chalk/index.css'
 import './assets/fonts/iconfont.css'
 import './assets/css/common.css'
 
