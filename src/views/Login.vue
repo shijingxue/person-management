@@ -14,12 +14,13 @@
         class="demo-ruleForm user_form"
       >
         <el-form-item prop="userName">
-          <el-input v-model="loginlist.userName" prefix-icon="el-icon-user"></el-input>
+          <el-input v-model="loginlist.userName" prefix-icon="el-icon-user" placeholder="请输入用户名"></el-input>
         </el-form-item>
         <el-form-item prop="userPassword">
           <el-input
             v-model="loginlist.userPassword"
             prefix-icon="el-icon-lock"
+            placeholder="请输入密码"
             type="password"
           ></el-input>
         </el-form-item>
@@ -36,16 +37,34 @@
         </el-form-item>
         <el-form-item class="btns">
           <el-button type="primary" @click="loginBtn">登录</el-button>
-          <el-button type="info">重置</el-button>
+          <el-button type="info"  @click="resset">重置</el-button>
+          <span class="set-user" @click="UserDialogVisible= !UserDialogVisible">注册新用户</span>
         </el-form-item>
       </el-form>
     </div>
+
+    <!-- 注册新用户对话框 -->
+    <el-dialog
+      title="注册用户"
+      class="userDialog"
+      :visible.sync="UserDialogVisible"
+      width="40%">
+      <user-set :utype="0"></user-set>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="UserDialogVisible = false">取 消</el-button>
+        <!-- <el-button type="primary" @click="UserDialogVisible = false">确 定</el-button> -->
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import Identify from './minix/Identify'
+import Identify from '../components/minix/Identify'
+import api from '@/api/index'
+import httpUtil from '@/utils/http-util'
+import UserSet from '../components/UserSet.vue'
 export default {
+  name: 'Login',
   data() {
     return {
       identifyCodes: '1234567890abcdefjhijklinopqrsduvwxyz',
@@ -59,14 +78,16 @@ export default {
       //   规则
       loginFormRules: {
         userName: [{ required: true, message: '请输入账户名', trigger: 'blur' }, { min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur' }],
-        userPassword: [{ required: true, message: '请输入登录密码', trigger: 'blur' }, { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }],
-         code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
-      }
+        userPassword: [{ required: true, message: '请输入登录密码', trigger: 'blur' }, { min: 6, max: 15, message: '长度在 6 到 15 个字符', trigger: 'blur' }]
+        //  code: [{ required: true, message: '请输入验证码', trigger: 'blur' }]
+      },
+      UserDialogVisible: false // 注册用户对话框
     }
   },
   // 注册局部组件
   components: {
-  'Identify': Identify
+  'Identify': Identify,
+  UserSet
   },
   created() {
       // 初始化验证码
@@ -95,27 +116,40 @@ export default {
        return
       }
       // 在登陆前 先验证表单内容填写是否有误
-      this.$refs.loginFormRef.validate(async valid => {
+      this.$refs.loginFormRef.validate(valid => {
         //  如果验证参数为true就通过
         if (!valid) {
           return
         }
-        const { data: res } = await this.$http.post('login', {
+        httpUtil.post(api.LOGIN, {
           userName: this.loginlist.userName,
-          userPassword: this.loginlist.userPassword })
-        // console.log('返回的数据', res)
-        // console.log('返回的数据', res.code)
-        if (res.code !== '200') {
-          return this.$message.error('登录失败,请输入正确的用户名和密码')
-        }
-        this.$message.success('登录成功')
-        // console.log(111)
-        //  保存token
-        window.sessionStorage.setItem('token', res.data.token)
-        //  导航值home
-        this.$router.push('/home')
+          userPassword: this.loginlist.userPassword }, res=>{
+            const data = res.data
+            window.sessionStorage.setItem('saveUserInfo', JSON.stringify(res.data))
+            this.$store.dispatch('saveUserInfo', res.data)
+
+            this.$store.commit('setType', data.userType)
+            this.$message.success('登录成功')
+            //  保存token
+            window.sessionStorage.setItem('userType', res.data.userType)
+            this.go()
+          }, (error)=>{
+            const message = error.response.data.message
+            // this.$message.error(error)
+          })
       })
+    },
+
+    go() {
+      //  导航值home
+      this.$router.push('/home', onAbort => { })
+    },
+
+    // 重置表单
+    resset() {
+      this.$refs.loginFormRef.resetFields()
     }
+
   }
 }
 </script>
@@ -123,7 +157,8 @@ export default {
 <style lang="less" scoped>
 .login_container {
   height: 100%;
-  background-color: #0c419b;
+  // background-color: #0c419b;
+  background: url(../assets/zhihu.png) no-repeat center;
 }
 .box {
   position: relative;
@@ -167,4 +202,17 @@ export default {
 .code_ipt{
   height: 45px;
 }
+
+.set-user {
+  color: rgb(168, 164, 164);
+  border-bottom: 1px solid rgb(110, 104, 104);
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+</style>
+<style>
+.login_container .userDialog .el-form-item__content{
+    margin-left: 120px !important;
+  }
 </style>

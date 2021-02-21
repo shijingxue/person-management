@@ -4,7 +4,7 @@
       <el-header>
         <div class="logo">
           <img src="../assets/logo.png" alt />
-          人力资源综合统计管理信息系统
+          餐厅点餐系统
         </div>
         <!-- 退出按钮 -->
         <el-button type="primary" @click="layout">退出</el-button>
@@ -54,10 +54,66 @@
 
 <script>
 export default {
+  name: 'Home',
   data() {
     return {
       // 侧边栏数据
-      asideList: [],
+      asideList: [
+        {
+          'id': 1,
+          'pid': 0,
+          'authname': '菜品管理',
+          'path': null,
+          'list': [
+            {
+              'id': 7,
+              'pid': 1,
+              'authname': '菜品列表',
+              'path': '/foodlist',
+              'list': null
+            }
+          ]
+        },
+        {
+          'id': 2,
+          'pid': 0,
+          'authname': '营业额',
+          'path': null,
+          'list': [
+            {
+              'id': 8,
+              'pid': 2,
+              'authname': '营业数据统计',
+              'path': '/branchmessage',
+              'list': null
+            }
+          ]
+        },
+        {
+          'id': 3,
+          'pid': 0,
+          'authname': '用户管理',
+          'path': null,
+          'list': [
+            {
+              'id': 9,
+              'pid': 3,
+              'authname': '新增用户',
+              'path': '/newuser',
+              'list': null
+            },
+            {
+              'id': 10,
+              'pid': 3,
+              'authname': '修改密码',
+              'path': '/changepwd',
+              'list': null
+            }
+
+          ]
+        }        
+
+      ],
       isCollapse: false,
       iconList: {
         '1': 'iconfont icon-bumen',
@@ -68,11 +124,13 @@ export default {
         '6': 'iconfont icon-kaoqin'
       },
       //  链接的激活状态
-      navActive: ''
+      navActive: '',
+      // 用户类型
+      type: this.$store.state.type
     }
   },
   created() {
-    this.getAside()
+    // this.getAside()
     //  获取链接的激活状态
     this.navActive = window.sessionStorage.getItem('navActive')
   },
@@ -81,16 +139,17 @@ export default {
     layout() {
       window.sessionStorage.clear('token')
       this.$router.push('/login')
+      this.$store.commit('setType', null)
     },
     //  获取侧边栏数据
-    async getAside() {
-      const { data: res } = await this.$http.get('menus')
-      // console.log('侧边栏数据', res)
-      if (res.code !== '200') {
-        return this.$message.error(res.meta.msg)
-      }
-      this.asideList = res.data
-    },
+    // async getAside() {
+    //   const { data: res } = await this.$http.get('menus')
+    //   // console.log('侧边栏数据', res)
+    //   if (res.code !== '200') {
+    //     return this.$message.error(res.meta.msg)
+    //   }
+    //   this.asideList = res.data
+    // },
     // 伸缩侧边栏
     toggleBtn() {
       this.isCollapse = !this.isCollapse

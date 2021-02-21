@@ -25,22 +25,22 @@ Vue.use(ElementUI)
 Vue.config.productionTip = false
 // 配置接口的基准地址
 // axios.defaults.baseURL = `/api`
-// axios.defaults.baseURL = `http://www.ljsss.cn:8085/`
-axios.defaults.baseURL = `http://127.0.0.1:8085/`
+axios.defaults.baseURL = `http://www.ljsss.cn:8085/`
+// axios.defaults.baseURL = `http://127.0.0.1:8085/`
 Vue.prototype.$http = axios
 // 请求在到达服务器之前，先会调用use中的这个回调函数来添加请求头信息
-axios.interceptors.request.use(config => {
-  Nprogress.start()
-  // 为请求头对象，添加token验证的Authorization字段
-  config.headers.Authorization = window.sessionStorage.getItem('token')
-  return config
-})
+// axios.interceptors.request.use(config => {
+//   Nprogress.start()
+//   // 为请求头对象，添加token验证的Authorization字段
+//   // config.headers.Authorization = window.sessionStorage.getItem('token')
+//   return config
+// })
 
 // 响应拦截器
-axios.interceptors.response.use(config => {
-  Nprogress.done()
-  return config
-})
+// axios.interceptors.response.use(config => {
+//   Nprogress.done()
+//   return config
+// })
 
 Vue.prototype.$message = Message
 

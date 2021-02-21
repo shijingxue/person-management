@@ -1,28 +1,28 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const Login = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Login.vue')
-const Home = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Home.vue')
-const Hello = () => import(/* webpackChunkName:"login_home_hello" */ '../components/Hello.vue')
-const Division = () => import(/* webpackChunkName:"department" */ '../components/department/Division.vue')
-const Position = () => import(/* webpackChunkName:"department" */ '../components/department/Position.vue')
-const Employee = () => import(/* webpackChunkName:"employee" */ '../components/employee/Employee.vue')
-const EmployeeChange = () => import(/* webpackChunkName:"employee" */ '../components/employee/Employee_change.vue')
-const Rewards = () => import(/* webpackChunkName:"reward" */ '../components/reward/Rewards.vue')
-const Users = () => import(/* webpackChunkName:"user" */ '../components/user/Users.vue')
-const Check = () => import(/* webpackChunkName:"check" */ '../components/check/Check.vue')
-const Pay = () => import(/* webpackChunkName:"pay" */ '../components/pay/Pay.vue')
+const Login = () => import(/* webpackChunkName:"login_home_hello" */ '../views/Login.vue')
+const Home = () => import(/* webpackChunkName:"login_home_hello" */ '../views/Home.vue')
+const Hello = () => import(/* webpackChunkName:"login_home_hello" */ '../views/Hello.vue')
+const FoodList = () => import(/* webpackChunkName:"department" */ '../views/Food/FoodList.vue')
+const NewUser = () => import(/* webpackChunkName:"department" */ '../views/User/NewUser.vue')
+const ChangePwd = () => import(/* webpackChunkName:"employee" */ '../views/User/ChangePwd.vue')
+// const EmployeeChange = () => import(/* webpackChunkName:"employee" */ '../views/employee/Employee_change.vue')
+// const Rewards = () => import(/* webpackChunkName:"reward" */ '../views/reward/Rewards.vue')
+// const Users = () => import(/* webpackChunkName:"user" */ '../views/user/Users.vue')
+// const Check = () => import(/* webpackChunkName:"check" */ '../views/check/Check.vue')
+// const Pay = () => import(/* webpackChunkName:"pay" */ '../views/pay/Pay.vue')
 
-// import Login from '../components/Login.vue'
-// import Home from '../components/Home.vue'
-// import Hello from '../components/Hello.vue'
-// import Division from '../components/department/Division.vue'
-// import Position from '../components/department/Position.vue'
-// import Employee from '../components/employee/Employee.vue'
-// import EmployeeChange from '../components/employee/Employee_change.vue'
-// import Rewards from '../components/reward/Rewards.vue'
-// import Users from '../components/user/Users.vue'
-// import Check from '../components/check/Check.vue'
-// import Pay from '../components/pay/Pay.vue'
+// import Login from '../views/Login.vue'
+// import Home from '../views/Home.vue'
+// import Hello from '../views/Hello.vue'
+// import Division from '../views/department/Division.vue'
+// import Position from '../views/department/Position.vue'
+// import Employee from '../views/employee/Employee.vue'
+// import EmployeeChange from '../views/employee/Employee_change.vue'
+// import Rewards from '../views/reward/Rewards.vue'
+// import Users from '../views/user/Users.vue'
+// import Check from '../views/check/Check.vue'
+// import Pay from '../views/pay/Pay.vue'
 
 Vue.use(VueRouter)
 const router = new VueRouter({
@@ -47,51 +47,51 @@ const router = new VueRouter({
           component: Hello
         },
         {
-          path: '/branchmessage',
-          component: Division
+          path: '/foodlist',
+          component: FoodList
         },
         {
-          path: '/branchposition',
-          component: Position
+          path: '/newuser',
+          component: NewUser
         },
         {
-          path: '/staff',
-          component: Employee
-        },
-        {
-          path: '/randp',
-          component: Rewards
-        },
-        {
-          path: '/userinformation',
-          component: Users
-        },
-        {
-          path: '/salaryentry',
-          component: Pay
-        },
-        {
-          path: '/salarychanges',
-          component: EmployeeChange
-        },
-        {
-          path: '/attendance',
-          component: Check
+          path: '/changepwd',
+          component: ChangePwd
         }
+        // {
+        //   path: '/randp',
+        //   component: Rewards
+        // },
+        // {
+        //   path: '/userinformation',
+        //   component: Users
+        // },
+        // {
+        //   path: '/salaryentry',
+        //   component: Pay
+        // },
+        // {
+        //   path: '/salarychanges',
+        //   component: EmployeeChange
+        // },
+        // {
+        //   path: '/attendance',
+        //   component: Check
+        // }
       ]
     }
   ]
 })
 // 路由导航守卫
-router.beforeEach((to, from, next) => {
-  if (to.path === '/login') {
-    return next()
-  }
-  //  如果访问的不是登录页 则验证他们的token
-  const isToken = window.sessionStorage.getItem('token')
-  if (!isToken) {
-    return next('/login')
-  }
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/login') {
+//     return next()
+//   }
+//   //  如果访问的不是登录页 则验证他们的token
+//   const isToken = window.sessionStorage.getItem('token')
+//   if (!isToken) {
+//     return next('/login')
+//   }
+//   next()
+// })
 export default router
